@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('student',[StudentController::class,'store']);
 Route::get('student/{id}',[StudentController::class,'show']);
+Route::post('payment',[PaymentController::class,'store']);
+Route::get('payments',[PaymentController::class,'index']);

@@ -17,7 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->increments('payment_id');
             $table->unsignedBigInteger('student_id_fk');
             $table->string('paid_by');
-            $table->string('paid_amount');
+            $table->double('paid_amount');
             $table->string('payment_method');
             $table->string('payment_channel');
             $table->foreign('student_id_fk')->references('student_id')->on('students');

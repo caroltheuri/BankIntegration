@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Models\Payment;
+use App\Http\Resources\Payment as PaymentResource;
 
 class PaymentController extends Controller
 {
@@ -13,7 +16,10 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        $payments = Payment::all();
+        return response()->json([
+            "Response" => $payments
+        ]);
     }
 
     /**
@@ -24,7 +30,19 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $payment = new Payment();
+        $payment->paid_by = $request->input('paid_by');
+        $payment->student_id_fk = $request->input('student_id_fk');
+        $payment->paid_amount = $request->input('paid_amount');
+        $payment->payment_method = $request->input('payment_method');
+        $payment->payment_channel = $request->input('payment_channel');
+        
+        $payment->save();
+
+        return response()->json([
+            "ResponseCode" => 200,
+            "ResponseMessage" => $payment
+        ]);
     }
 
     /**
